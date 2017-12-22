@@ -16,12 +16,12 @@ int main() {
     int P_min = 0;
 
     /*Anomaly Alphabet Grids*/
-    int det_grid[SYM][SYM] = {0};
-    int ref_grid[SYM][SYM] = {0};
+    MATHTYPE det_grid[SYM][SYM] = {0};
+    MATHTYPE ref_grid[SYM][SYM] = {0};
 
     /*Anomaly and Reference Sliding Windows Array*/
-    int det_window[DET_W] = {0};
-    int ref_window[REF_W] = {0};
+    MATHTYPE det_window[DET_W] = {0};
+    MATHTYPE ref_window[REF_W] = {0};
 
 	int count = 15;
     MATHTYPE score = 0;
@@ -58,7 +58,7 @@ int main() {
         /* Scale P to [0, 8] */
         int letter = 7.0*((double) P - (double) P_min) / ((double) P_max - (double) P_min);
         // int letter = x;
-        
+
         MATHTYPE det_0 = det_window[0];
         MATHTYPE ref_0 = ref_window[0];
         MATHTYPE curr_0 = det_window[DET_W-1];

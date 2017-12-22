@@ -1,6 +1,6 @@
 clear all;
 
-ttype = 'ann'; %mg, ecg1, ecg2, ecg3, ecg4, ecg5, tek1, tek2, tek3, mitdb, mitdbx, nprs43, nprs44, pow, qtdbsel102, qtdbsele0606, 'aud', 'eur', 'dr1_1', 'A', 'ann'.
+ttype = 'synth'; %mg, ecg1, ecg2, ecg3, ecg4, ecg5, tek1, tek2, tek3, mitdb, mitdbx, nprs43, nprs44, pow, qtdbsel102, qtdbsele0606, 'aud', 'eur', 'dr1_1', 'A', 'ann'.
 mape = 0; mse = 0; sym = 1;
 data_dir = 'data';
 best = 1;
@@ -350,6 +350,26 @@ if strcmp(ttype, 'pow')
     for i=1:length(t) t(i) = i; end
     ch1 = ch1 - mean(ch1);
     ch1 = ch1/(max(abs(ch1)));
+    x = ch1;
+end
+
+if strcmp(ttype, 'synth')
+    %Override parameters with the best I've found so far.
+    if best == 1
+        %RDFT parameters.
+        ff=0.1;
+        chans=16;
+        %reference and detection window lengths.
+        RWL=300;
+        DWL=100;
+        symbols = 8;
+    end
+    %import TEK time series.
+    ch1 = load("sig.out");
+    t = zeros(size(ch1,1),1);
+    for i=1:length(t) t(i) = i; end
+    %ch1 = ch1 - mean(ch1);
+    %ch1 = ch1/(max(abs(ch1)));
     x = ch1;
 end
 

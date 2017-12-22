@@ -1,5 +1,5 @@
 C = gcc
-CFLAGS =  -O3 -Wall
+CFLAGS =  -g -O3 -Wall
 
 SOURCES=rdft_ad.c hw_trig.c
 OBJECTS=$(SOURCES:.c=.o)
